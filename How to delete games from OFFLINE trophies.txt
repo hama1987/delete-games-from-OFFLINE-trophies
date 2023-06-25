@@ -1,0 +1,19 @@
+How to delete games from OFFLINE trophies.
+
+Disclaimer: This worked for me. Keep a backup of everything you modify or delete. I have NO idea about online trophies, synching or whatever. This is OFFLINE only!
+
+- Copy /user/home/xxxxxxxx/trophy/db/trophy_local.db from PS4 FTP to your PC
+- Open trophy_local.db using SQLite viewer
+- Switch to tab "Browse Data", then open table "tbl_trophy_title".
+- Scroll right to the column "title", filter for the game you want to remove, e.g. "sonic" to see all Sonic games. Scroll back left, note the "trophy_title_id" (NPWRxxxxx_00) for the title you want to delete.
+- Remove all filters, then go through all tables of the database:
+| - Filter each table's "trophy_title_id" by the NPWRxxxxx value you found
+| - Select all rows that remain by selecting the numbers on the very left of the window, right-click, "Delete Records"
+- Click "Write Changes", then "Close Database"
+- Copy the changed database back to /user/home/xxxxxxxx/trophy/db, rename the copy there first
+- Navigate to /user/home/xxxxxxxx/trophy/data/. Delete the NPWRxxxxx folder with the same NPWR number you deleted in the database.
+- Repeat for /user/trophy/conf/, delete the NPWRxxxxx folder.
+
+Make sure you backup the database and the both NPWR folders before deleting them in case anything goes wrong.
+
+You can do this with several games at once, of course.
